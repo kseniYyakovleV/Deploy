@@ -35,5 +35,5 @@ def load_apk_file(request):
         data = file.read()
         response = HttpResponse(data, headers = {
             "Content-Type": "application/vnd.android.package-archive",
-            "Content-Disposition": "attachment; filename = Test_apk.apk"})
+            "Content-Disposition": "attachment; filename = app-release.apk"})
         return response
