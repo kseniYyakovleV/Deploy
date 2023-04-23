@@ -1,0 +1,56 @@
+view - Представление (функция, которая на url адрес возвращает HTML страницу)
+Можно сделать простой возврат текста страницы:
+	from django.http import HttpResponse
+	def func(request):
+		return HttpResponse("<html></html>")
+Другой вариант - добавить папку с шаблонами templates
+Затем в основном файле представлений написать:
+	from django.shortcuts import render
+	def func(request):
+		return render(request, templates.{temlate_name}
+
+
+
+urls - Хранит в виде словаря ответы на возможные url запросы
+Можно сделать в качестве ответа функцию основного приложения (view из основного прил.), сделать класс, в качестве ответа (также из основного view) и переслать на файл urls.py из другого приложения:
+1)
+	from django.urls import path
+	from project.views import func
+	urlpatterns = [
+	path('path', func, name="")
+	]
+2)
+	from django.urls import path
+	from project.views import view_class
+	urlpatterns = [
+	path("path", view_class.as_view())
+	]
+3)	(В этом случае, надо будет в приложении, на которое ссылается определенный url, создать файл представления views, а также настроить в приложении файл urls.py так, будто это обычный файл urls.py (не из добавленного приложения))
+	from django.urls import path, include
+	urlpatterns=[
+	path("path", include("addition_app.urls"))
+	]
+
+
+
+
+Для написания теста необходимо импортировать встроенный модуль unittest.
+У него есть класс TestCase, от которого надо наследовать новый класс-тест.
+В этом классе-тесте методы будут вызываемыми тестами.
+При помощи методов setUp(self) и tearDown(self) можно настроить то, что будет до и после тестов.
+Дальше все методы, название которых будет начинаться со слова test будут считаться тестовыми и запускаться автоматически при запуске теста(не файла, тест нужно сначала вызвать в файле).
+Для вызова теста необходимо под определением класса написать: unittest.main(warnings="ingnore").
+	import unittest
+	class Test(TestCase):
+		def setUp(self):
+			"Действия перед каждым тестом"
+			pass
+		def tearUp(self):
+			"Действия после каждого теста"
+			pass
+		def test_1(self):
+			"Тест"
+			pass
+	unittest.main(warnings="ignore")
+
+

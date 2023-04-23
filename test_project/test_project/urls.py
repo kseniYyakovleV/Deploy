@@ -18,6 +18,9 @@ from django.urls import path
 from lists import views
 
 urlpatterns = [
-    path('', views.home_page, name="home"),
-
-]
+    path('home/', views.home_page, name="home"),
+    path("file/", views.get_file, name="get_file"),
+    path("load_exe/", views.load_excel_file_exe, name="load_excel_file.exe"),
+    path("load_excel/", views.load_excel_file, name = "load"),
+    path("load_apk/", views.load_apk_file, name = "apk"),
+] 
