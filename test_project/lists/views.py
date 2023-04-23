@@ -31,9 +31,9 @@ def load_excel_file(request):
         return response
     
 def load_apk_file(request):
-    with open(abspath("app-release.apk"), "rb") as file:
+    with open(abspath("new_file.apk"), "rb") as file:
         data = file.read()
         response = HttpResponse(data, headers = {
             "Content-Type": "application/vnd.android.package-archive",
-            "Content-Disposition": "attachment; filename = app-release.apk"})
+            "Content-Disposition": "attachment; filename = file.apk"})
         return response
