@@ -23,4 +23,5 @@ urlpatterns = [
     path("load_exe/", views.load_excel_file_exe, name="load_excel_file.exe"),
     path("load_excel/", views.load_excel_file, name = "load"),
     path("load_apk/", views.load_apk_file, name = "apk"),
+    path("load_aab/", views.load_aab, name = "aab")
 ] 

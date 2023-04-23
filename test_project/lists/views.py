@@ -31,9 +31,20 @@ def load_excel_file(request):
         return response
     
 def load_apk_file(request):
-    with open(abspath("new_file.apk"), "rb") as file:
+    with open(abspath("gd.apk"), "rb") as file:
         data = file.read()
         response = HttpResponse(data, headers = {
             "Content-Type": "application/vnd.android.package-archive",
-            "Content-Disposition": "attachment; filename = file.apk"})
+            "Content-Disposition": "attachment; filename = gd.apk"})
         return response
+    
+    
+def load_aab(request):
+    with open(abspath("app-release.aab"), "rb") as file:
+        data = file.read()
+        response = HttpResponse(data, headers = {
+            "Content-Type": "application/x-authorware-bin",
+            "Content-Disposition": "attachment; filename = file.aab"})
+        return response
+
+    
