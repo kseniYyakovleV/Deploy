@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import FileResponse
 from os.path import abspath
+from django.shortcuts import render
+from rest_framework.response import Response
+from rest_framework import generics
+from .models import Spare_parts as sp
 
 # Create your views here.
 def home_page(request):
@@ -38,6 +42,16 @@ def load_apk_file(request):
             "Content-Disposition": "attachment; filename = game.apk"})
         return response
     
+class Items_list(generics.ListAPIView):
+    def get(self, request):
+        return Response(sp.get_all())
+    
 
+
+class One_item(generics.GenericAPIView):
+    def get(self, request):
+        id = request.GET["id"]
+        item = sp.objects.filter(id = id)[0]
+        return Response(item.get_full_info())
 
     
